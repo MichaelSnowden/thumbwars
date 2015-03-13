@@ -1,0 +1,9 @@
+- @posts.each do |post|
+  .row
+    .page-header
+      %h3= post.title
+    = raw post.content
+    .btn-group(role="group")
+      = link_to 'Show', post, class: "btn btn-success"
+      = link_to 'Edit', edit_post_path(post), remote: true, class: "btn btn-primary"
+      = link_to 'Destroy', post_delete_path(post), remote: true, class: "btn btn-danger"

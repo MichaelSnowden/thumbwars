@@ -1,0 +1,15 @@
+.page-header
+  %h1 
+    = @post.title
+    %br
+    %small= time_ago_in_words(@post.created_at) + " ago"
+#comment-index
+  = render 'comments/index'
+
+.btn-group(role="group")
+  = link_to "Agree", new_post_comment_path(@post), remote: true, class: "btn btn-primary"
+  = link_to "Disagree", new_post_comment_path(@post), remote: true, class: "btn btn-warning"
+
+.modal.fade(id="comment-modal")
+  .modal-dialog
+    .modal-content(id="inner-comment-modal")

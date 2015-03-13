@@ -1,0 +1,5 @@
+- @comments.each do |c|
+  .well
+    = raw c.content
+    %br
+    %i= "-" + c.user.email

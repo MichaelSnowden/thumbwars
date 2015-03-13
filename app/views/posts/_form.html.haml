@@ -1,0 +1,8 @@
+= simple_form_for @post, remote: true do |f|
+  .modal-body
+    = f.error_notification
+    = f.input :title
+    = f.input :content, as: :wysihtml5
+  .modal-footer
+    = f.submit class: 'btn btn-primary'
+    = link_to "Cancel", "#", class: "btn", data: {dismiss: "modal"}

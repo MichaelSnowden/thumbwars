@@ -1,0 +1,13 @@
+.page-header
+  %h1 All Posts
+
+.btn-group(role="group")
+  = link_to 'New Post', new_post_path, remote: true, class: "btn btn-success"
+
+.container
+  .post-index
+    = render "index"
+
+.modal.fade(id="post-modal")
+  .modal-dialog
+    .modal-content(id="inner-post-modal")
