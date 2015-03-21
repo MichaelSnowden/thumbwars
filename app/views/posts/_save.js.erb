@@ -4,6 +4,6 @@ $("ul.errors").html("")
     $("ul.errors").append($("<li />").html("<%= message.html_safe %>"))
   <% end %>
 <% else %>
-  $(".post-index").html("<%= escape_javascript(render 'index') %>")
+  $(".post-index").html("<%= escape_javascript(render partial: 'post', collection: @posts) %>")
   $("#post-modal").modal("hide")
 <% end %>

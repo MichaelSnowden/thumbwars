@@ -1,12 +1,19 @@
 Rails.application.routes.draw do
+  mount Bootsy::Engine => '/bootsy', as: 'bootsy'
   root 'posts#index'
 
   devise_for :users
 
   resources :posts
 
+  resources :comments do
+    member do
+      put :like
+      put :dislike
+    end
+  end
+
   resources :posts do
-    resources :comments
     get "delete"
   end
 

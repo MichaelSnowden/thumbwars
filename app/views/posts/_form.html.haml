@@ -2,7 +2,7 @@
   .modal-body
     = f.error_notification
     = f.input :title
-    = f.input :content, as: :wysihtml5
+    = f.input :content, as: :bootsy
   .modal-footer
     = f.submit class: 'btn btn-primary'
     = link_to "Cancel", "#", class: "btn", data: {dismiss: "modal"}

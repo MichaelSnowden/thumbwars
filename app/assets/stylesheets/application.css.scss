@@ -1,6 +1,13 @@
 /*
-*= require bootstrap-wysihtml5
+*= require bootsy
+*= require nprogress
+*= require nprogress-bootstrap
 */
+@import "bootsy";
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+.button_to,
+.button_to div {
+  display: inline;
+}

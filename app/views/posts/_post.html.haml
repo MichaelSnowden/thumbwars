@@ -1,0 +1,7 @@
+%div.post{ :id => "post-#{post.id}" }
+  %hr
+  = link_to "×", post_path(post), method: :delete, remote: true, disable_with: "x", class: "close"
+  %h4
+    = link_to post.title, post
+    %small= post.updated_at
+  = raw post.content

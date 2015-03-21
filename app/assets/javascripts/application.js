@@ -12,10 +12,12 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require bootsy
 //= require turbolinks
 //= require_tree .
 //= require bootstrap-sprockets
-//= require bootstrap-wysihtml5
+//= require nprogress
+//= require nprogress-turbolinks
 
 $(document).on('page:load', function(){
   window['rangy'].initialized = false

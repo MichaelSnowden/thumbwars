@@ -9,10 +9,9 @@ class PostsController < ApplicationController
   end
 
   def show
+    @comments = @post.comments.order('created_at desc').select { |c| c.root? == true }
     @comment = Comment.new
-    @commentable_id = @post.id
-    @commentable_type = "Post"
-    @comments = @post.comment_threads
+    @comment.user_id = current_user.id
   end
 
   def new
@@ -47,7 +46,7 @@ class PostsController < ApplicationController
       @post = Post.find(params[:id])
     end
     def set_posts
-      @posts = Post.all
+      @posts = Post.all.order('created_at desc')
     end
     def post_params
       params.require(:post).permit(:title, :content, :user_id, :root_comments => [])

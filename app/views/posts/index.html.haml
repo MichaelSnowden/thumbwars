@@ -6,7 +6,7 @@
 
 .container
   .post-index
-    = render "index"
+    = render partial: "post", collection: @posts
 
 .modal.fade(id="post-modal")
   .modal-dialog

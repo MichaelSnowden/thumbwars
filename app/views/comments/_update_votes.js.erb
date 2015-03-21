@@ -1,0 +1,1 @@
+$("#comment-votes-badge-<%= @comment.id%>").html("<%= escape_javascript(render partial: 'votables/votes_badge', locals: { votable: @comment }) %>")

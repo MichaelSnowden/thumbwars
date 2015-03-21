@@ -33,11 +33,11 @@ gem 'ancestry'
 
 gem 'haml-rails'
 
-gem 'bootstrap-wysihtml5-rails'
+gem 'bootsy'
 
 gem 'acts_as_votable'
 
-gem 'acts_as_commentable_with_threading'
+gem 'nprogress-rails'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

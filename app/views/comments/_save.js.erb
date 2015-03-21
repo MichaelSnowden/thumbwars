@@ -1,8 +1,1 @@
-$("ul.errors").html("")
-<% if @comment.errors.any? %>
-  <% @comment.errors.full_messages.each do |message| %>
-    $("ul.errors").append($("<li />").html("<%= message.html_safe %>"))
-  <% end %>
-<% else %>
-  $("#comment-index").html("<%= escape_javascript(render 'index') %>")
-<% end %>
+$("#comment-replies-<%= parent.id %>").html("<%= escape_javascript(render partial: 'comments/comment', collection: parent.children.order('created_at desc')) %>")

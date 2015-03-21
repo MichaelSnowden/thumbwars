@@ -1,0 +1,6 @@
+- if current_user.voted_up_for? votable
+  %button.btn.btn-primary.disabled
+    %span.glyphicon.glyphicon-thumbs-up
+- else
+  = button_to like_comment_path(votable), method: :put, remote: true, class: "btn btn-primary" do
+    %span.glyphicon.glyphicon-thumbs-up
