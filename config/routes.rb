@@ -1,15 +1,23 @@
 Rails.application.routes.draw do
   mount Bootsy::Engine => '/bootsy', as: 'bootsy'
+  get '/posts/tagged/:tag' => 'posts#tagged', as: :tagged_posts
   root 'posts#index'
 
   devise_for :users
 
-  resources :posts
+  resources :posts do
+    collection do
+      get :tagged
+      get :all
+    end
+  end
 
   resources :comments do
     member do
       put :like
       put :dislike
+      put :unlike
+      put :undislike
     end
   end
 

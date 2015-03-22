@@ -1,1 +1,4 @@
 <%= render "save" %>
+$("#new-post-collapse").collapse('hide')
+$(".tag-link").removeClass("perma-active")
+$(".<%= @tag %>-tag-link").addClass("perma-active")

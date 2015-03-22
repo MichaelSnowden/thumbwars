@@ -1,6 +1,6 @@
 - if current_user.voted_down_for? votable
-  %button.btn.btn-warning.disabled
+  = button_to undislike_comment_path(votable), method: :put, remote: true, class: "btn btn-danger" do
     %span.glyphicon.glyphicon-thumbs-down
 - else
-  = button_to dislike_comment_path(votable), method: :put, remote: true, class: "btn btn-warning" do
+  = button_to dislike_comment_path(votable), method: :put, remote: true, class: "btn" do
     %span.glyphicon.glyphicon-thumbs-down

@@ -1,8 +1,7 @@
-= simple_form_for @post, remote: true do |f|
-  .modal-body
-    = f.error_notification
-    = f.input :title
-    = f.input :content, as: :bootsy
-  .modal-footer
-    = f.submit class: 'btn btn-primary'
-    = link_to "Cancel", "#", class: "btn", data: {dismiss: "modal"}
+= simple_form_for post, remote: true do |f|
+  = f.error_notification
+  = f.input :title
+  = f.input :content, as: :bootsy
+  = f.input :tag_list
+  = f.submit class: 'btn btn-primary'
+  = link_to "Cancel", "#", class: "btn", data: {dismiss: "modal"}

@@ -39,6 +39,10 @@ gem 'acts_as_votable'
 
 gem 'nprogress-rails'
 
+gem 'acts-as-taggable-on'
+
+gem 'active_link_to'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

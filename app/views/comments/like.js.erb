@@ -1,2 +1,2 @@
-<%= render "update_votes" %>
-<%= render "update_thumbs" %>
+<%= render partial: "update_votes", locals: { comment: @comment } %>
+<%= render partial: "update_thumbs", locals: { comment: @comment } %>

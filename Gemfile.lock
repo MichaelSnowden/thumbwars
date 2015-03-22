@@ -20,6 +20,8 @@ GEM
       erubis (~> 2.7.0)
       rails-dom-testing (~> 1.0, >= 1.0.5)
       rails-html-sanitizer (~> 1.0, >= 1.0.1)
+    active_link_to (1.0.2)
+      actionpack
     activejob (4.2.0)
       activesupport (= 4.2.0)
       globalid (>= 0.3.0)
@@ -36,6 +38,8 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
+    acts-as-taggable-on (3.5.0)
+      activerecord (>= 3.2, < 5)
     acts_as_votable (0.10.0)
     ancestry (2.1.0)
       activerecord (>= 3.0.0)
@@ -204,6 +208,8 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  active_link_to
+  acts-as-taggable-on
   acts_as_votable
   ancestry
   bootstrap-sass

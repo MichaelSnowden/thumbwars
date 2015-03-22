@@ -1,27 +1,27 @@
 .comment{id: "comment-#{comment.id}"}
-  %hr
   .media-left
-    
-    %img(src="https://cdn2.iconfinder.com/data/icons/windows-8-metro-style/128/user.png" style="width:40px;")
-    .btn-group{role: "group"}
-      %div{id:"comment-like-#{comment.id}"}
-        = render partial: "votables/like", locals: { votable: comment }
-      %div{id:"comment-dislike-#{comment.id}"}
-        = render partial: "votables/dislike", locals: { votable: comment }
-  .media-body
-    %h4.media-heading
-      = comment.id
-      %div{id: "comment-votes-badge-#{comment.id}"}
-        = render partial: "votables/votes_badge", locals: { votable: comment }
-    = raw comment.content
-    %small= comment.updated_at
+    %div{id:"comment-like-#{comment.id}"}
+      = render partial: "votables/like", locals: { votable: comment }
+    %div{id:"comment-dislike-#{comment.id}"}
+      = render partial: "votables/dislike", locals: { votable: comment }
 
-    %a.btn.btn-small{"aria-controls" => "collapseExample", "aria-expanded" => "false", "data-toggle" => "collapse", :href => "#reply-collapse-#{comment.id}"}
-      Reply
-    %a.btn.btn-primary.btn-small{"aria-controls" => "collapseExample", "aria-expaned" => "false", "data-toggle" => "collapse", :href => "#replies-collapse-#{comment.id}"}
-      %span.badge= comment.children.count
-    .collapse{id: "reply-collapse-#{comment.id}"}
+  .media-body
+    .well.replies-collapse-trigger{"class" => comment.css_class, id: "replies-collapse-trigger-#{comment.id}", href: "#replies-collapse-#{comment.id}", "data-toggle" => "collapse"}
+      %h4.media-heading
+        %small
+          %span= link_to comment.user.email + " ", "#"
+          %span{id: "comment-score-#{comment.id}"}
+            = comment.score
+          %span= " votes : "
+          %span{id: "comment-children-count-#{comment.id}"}
+            = comment.children.count.to_s
+          %span= " replies : " + time_ago_in_words(comment.created_at) + " ago"
+          %a.reply-collapse-trigger{"data-toggle" => "collapse", :href => "#reply-collapse-#{comment.id}", id: "reply-collapse-trigger-#{comment.id}"}
+            reply
+      = raw comment.content
+
+    .collapse.reply-collapse{id: "reply-collapse-#{comment.id}"}
       = render partial: "comments/form", remote: true, locals: { :comment => Comment.new, :parent_id => comment.id, :post_id => comment.post_id }
-    .collapse{id: "replies-collapse-#{comment.id}"}
+    .collapse.replies-collapse{id: "replies-collapse-#{comment.id}"}
       %div{id: "comment-replies-#{comment.id}"}
         = render partial: "comments/comment", collection: comment.children

@@ -1,1 +1,9 @@
-<%= render partial: "save", locals: { parent: @comment.parent } %>
+<% if @comment.parent %>
+  <%= render partial: "save", locals: { parent: @comment.parent } %>
+  $("#replies-collapse-<%= @comment.parent.id %>").collapse('show')
+  $("#reply-collapse-<%= @comment.parent.id %>").collapse('hide')
+  $("#comment-children-count-<%= @comment.parent.id %>").html("<%= escape_javascript(render partial: 'comments/replies_badge', locals: {comment: @comment.parent}) %>")
+  $("#replies-collapse-trigger-<%= @comment.parent.id %>").addClass("comment-has-children")
+<% else %>
+  $("#comment-index").append("<li class='media'><%= escape_javascript(render partial: 'comments/comment', locals: {comment: @comment}) %></li>")
+<% end %>

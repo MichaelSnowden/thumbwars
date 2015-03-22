@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
   respond_to :html, :js
-  before_action :set_comment, only: [:show, :like, :dislike]
+  before_action :set_comment, only: [:show, :like, :dislike, :unlike, :undislike]
 
   def create
     @comment = Comment.new(comment_params)
@@ -32,11 +32,25 @@ class CommentsController < ApplicationController
     end
   end
 
+  def unlike
+    @comment.unliked_by current_user
+    respond_to do |f|
+      f.js {}
+    end
+  end
+
+  def undislike
+    @comment.undisliked_by current_user
+    respond_to do |f|
+      f.js {}
+    end
+  end
+
   private
     def set_comment
       @comment = Comment.find(params[:id])
     end
     def comment_params
-      params.require(:comment).permit(:parent_id, :post_id, :content, :user_id)
+      params.require(:comment).permit(:parent_id, :bootsy_image_gallery_id, :post_id, :content, :user_id)
     end
 end

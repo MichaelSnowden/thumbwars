@@ -1,2 +1,2 @@
-$("#comment-like-<%= @comment.id %>").html("<%= escape_javascript(render partial: 'votables/like', locals: { votable: @comment }) %>")
-$("#comment-dislike-<%= @comment.id %>").html("<%= escape_javascript(render partial: 'votables/dislike', locals: { votable: @comment }) %>")
+$("#comment-like-<%= comment.id %>").html("<%= escape_javascript(render partial: 'votables/like', locals: { votable: comment }) %>")
+$("#comment-dislike-<%= comment.id %>").html("<%= escape_javascript(render partial: 'votables/dislike', locals: { votable: comment }) %>")

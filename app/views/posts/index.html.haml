@@ -1,13 +1,15 @@
-.page-header
-  %h1 All Posts
+.page-header{id: "page-header"}
+  = render partial: "posts_header"
 
-.btn-group(role="group")
-  = link_to 'New Post', new_post_path, remote: true, class: "btn btn-success"
+#tag_cloud
+  = render partial: "tag_cloud"
+
+%a.btn{"data-toggle" => "collapse", :href => "#new-post-collapse"}
+  Write a Post
+#new-post-collapse.collapse
+  .well
+    = render :partial => 'posts/form', :locals => { post: @post, parent_id: nil, post_id: @post.id }
 
 .container
-  .post-index
+  #posts-index
     = render partial: "post", collection: @posts
-
-.modal.fade(id="post-modal")
-  .modal-dialog
-    .modal-content(id="inner-post-modal")

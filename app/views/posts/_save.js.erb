@@ -1,9 +1,2 @@
-$("ul.errors").html("")
-<% if @post.errors.any? %>
-  <% @post.errors.full_messages.each do |message| %>
-    $("ul.errors").append($("<li />").html("<%= message.html_safe %>"))
-  <% end %>
-<% else %>
-  $(".post-index").html("<%= escape_javascript(render partial: 'post', collection: @posts) %>")
-  $("#post-modal").modal("hide")
-<% end %>
+<%= render partial: "index", locals: { posts: @posts } %>
+$("#tag_cloud").html("<%= escape_javascript(render 'tag_cloud') %>")

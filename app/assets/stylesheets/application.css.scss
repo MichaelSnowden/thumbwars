@@ -11,3 +11,23 @@
 .button_to div {
   display: inline;
 }
+
+.comment-has-children:hover {
+	cursor: pointer; cursor: hand;
+}
+
+.btn {
+  margin-bottom: 5px;
+}
+
+#tag_cloud {
+	width: 400px;
+	.s { font-size: 0.8em; }
+	.m { font-size: 1.2em; }
+	.l { font-size: 1.8em; }
+	.xl { font-size: 2.4em; }
+}
+
+a.perma-active { 
+    text-decoration: underline;
+}

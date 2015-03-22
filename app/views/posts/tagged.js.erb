@@ -1,0 +1,4 @@
+<% puts "POSTS: " + @posts.all.to_sentence %>
+<%= render partial: "index", locals: { posts: @posts } %>
+$(".tag-link").removeClass("perma-active")
+$(".<%= @tag %>-tag-link").addClass("perma-active")

@@ -19,6 +19,15 @@
 //= require nprogress
 //= require nprogress-turbolinks
 
-$(document).on('page:load', function(){
-  window['rangy'].initialized = false
-})
+ready = function() {
+	$(document).on('page:load', function(){
+	  window['rangy'].initialized = false
+	})
+	$(".reply-collapse-trigger").click(function(e) { 
+		e.stopPropagation();
+		$($(e.target).attr("href")).collapse('toggle');
+	})
+}
+$(document).ajaxComplete(ready);
+$(document).ready(ready);
+$(document).on('page:load', ready);
