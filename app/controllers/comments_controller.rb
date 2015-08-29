@@ -1,6 +1,15 @@
 class CommentsController < ApplicationController
   respond_to :html, :js
   before_action :set_comment, only: [:show, :like, :dislike, :unlike, :undislike]
+  before_action :authenticate_user!
+  before_action :authenticate_owner!, only: [:edit, :destroy]
+
+  def authenticate_owner!
+    unless current_user == @comment.user
+      flash[:error] = "You don't own this comment"
+      redirect_to new_user_session_path
+    end
+  end
 
   def create
     @comment = Comment.new(comment_params)

@@ -1,0 +1,7 @@
+%h4= user.email
+%span
+  = link_to 'Posts', posts_path, onclick:'event.stopPropagation();'
+  .badge= user.posts.count
+%span
+  = link_to '| Comments', posts_path, onclick:'event.stopPropagation();'
+  .badge= user.comments.count

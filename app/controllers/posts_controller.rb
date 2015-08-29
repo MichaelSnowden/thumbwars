@@ -1,16 +1,27 @@
 class PostsController < ApplicationController
 
   respond_to :html, :js
-  before_action :set_posts, only: [:index, :update, :delete, :destroy]
+  before_action :set_posts, only: [:update, :delete, :destroy]
   before_action :set_post, only: [:show, :edit, :update]
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :delete, :destroy]
   
   def index
     @post = Post.new
+    if params[:search]
+      search
+    else
+      set_posts
+    end
+  end
+
+  def search
+    @search = params[:search]
+    @posts = Post.search(@search).order("created_at DESC")
   end
 
   def show
     @comments = @post.comments.order('created_at desc').select { |c| c.root? == true }
+    return unless current_user
     @comment = Comment.new
     @comment.user_id = current_user.id
   end
@@ -22,18 +33,19 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user = current_user
-    @post.save
-    @tag = @post.tag_list[0]
-    @posts = Post.tagged_with(@tag).order('created_at desc')
-    puts "POSTS FROM CONTROLLER: " + @posts.all.inspect
+    if @post.save
+      @tag = @post.tag_list[0]
+      @posts = Post.tagged_with(@tag).order('created_at desc')
+    end
   end
 
   def tagged
-    @tag = params[:tag]
-    @posts = Post.tagged_with(@tag).order('created_at desc')
+    session[:tag] = params[:tag]
+    @posts = Post.tagged_with(params[:tag]).order('created_at desc')
   end
 
   def all
+    session[:tag] = nil
     @posts = Post.all.order('created_at desc')
   end
 

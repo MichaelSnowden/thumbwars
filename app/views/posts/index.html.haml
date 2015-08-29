@@ -1,15 +1,13 @@
-.page-header{id: "page-header"}
-  = render partial: "posts_header"
+.page-header{id: "posts-header"}
+  = render "posts_header"
+.row
+  .col-md-12= render 'tag_cloud'
+- if current_user
+  %a.btn{"data-toggle" => "collapse", :href => "#new-post-collapse"}
+    Write a Post
+  #new-post-collapse.collapse
+    #post_form.well
+      = render :partial => 'posts/form', :locals => { post: @post, parent_id: nil, post_id: @post.id }
 
-#tag_cloud
-  = render partial: "tag_cloud"
-
-%a.btn{"data-toggle" => "collapse", :href => "#new-post-collapse"}
-  Write a Post
-#new-post-collapse.collapse
-  .well
-    = render :partial => 'posts/form', :locals => { post: @post, parent_id: nil, post_id: @post.id }
-
-.container
-  #posts-index
-    = render partial: "post", collection: @posts
+#posts-index
+  = render partial: "post", collection: @posts

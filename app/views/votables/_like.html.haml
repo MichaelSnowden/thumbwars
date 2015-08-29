@@ -1,6 +1,10 @@
-- if current_user.voted_up_for? votable
-  = button_to unlike_comment_path(votable), method: :put, remote: true, class: "btn btn-primary" do
-    %span.glyphicon.glyphicon-thumbs-up
+- if current_user
+  - if current_user.voted_up_for? votable
+    = button_to unlike_comment_path(votable), method: :put, remote: true, class: "btn btn-primary" do
+      %span.glyphicon.glyphicon-thumbs-up
+  - else
+    = button_to like_comment_path(votable), method: :put, remote: true, class: "btn" do
+      %span.glyphicon.glyphicon-thumbs-up
 - else
-  = button_to like_comment_path(votable), method: :put, remote: true, class: "btn" do
+  = button_to "#", "data-toggle" => "modal", :class => 'btn btn-small', 'data-target' => '#login_modal' do
     %span.glyphicon.glyphicon-thumbs-up

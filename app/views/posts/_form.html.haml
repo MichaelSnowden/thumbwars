@@ -2,6 +2,7 @@
   = f.error_notification
   = f.input :title
   = f.input :content, as: :bootsy
-  = f.input :tag_list
+  = f.input :tag_list, label: 'List of tags seperated by a comma'
   = f.submit class: 'btn btn-primary'
-  = link_to "Cancel", "#", class: "btn", data: {dismiss: "modal"}
+  %a.btn{"data-toggle" => "collapse", :href => "#new-post-collapse"}
+    Cancel

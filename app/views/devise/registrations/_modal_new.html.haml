@@ -1,0 +1,17 @@
+.modal-dialog
+  = simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+    .modal-content
+      .modal-header
+        %button.close{type: 'button', 'data-dismiss' => 'modal', 'aria-label' => 'Close'}
+          %span{'aria-hidden' => true}
+            &times;
+        %h4
+          Sign up
+      .modal-body
+        = f.input :email, required: true, autofocus: true
+        = f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @validatable)
+        = f.input :password_confirmation, required: true
+      .modal-footer
+        %button.btn.btn-default{type: 'button', 'data-dismiss'=>'modal'}
+          Cancel
+        = f.button :submit, "Sign up", class: 'btn-primary'

@@ -1,22 +1,24 @@
 .comment{id: "comment-#{comment.id}"}
   .media-left
-    %div{id:"comment-like-#{comment.id}"}
-      = render partial: "votables/like", locals: { votable: comment }
-    %div{id:"comment-dislike-#{comment.id}"}
-      = render partial: "votables/dislike", locals: { votable: comment }
+    - if current_user
+      %div{id:"comment-like-#{comment.id}"}
+        = render partial: "votables/like", locals: { votable: comment }
+      %div{id:"comment-dislike-#{comment.id}"}
+        = render partial: "votables/dislike", locals: { votable: comment }
 
   .media-body
     .well.replies-collapse-trigger{"class" => comment.css_class, id: "replies-collapse-trigger-#{comment.id}", href: "#replies-collapse-#{comment.id}", "data-toggle" => "collapse"}
       %h4.media-heading
         %small
-          %span= link_to comment.user.email + " ", "#"
+          %span{'data-content'=>"#{render partial: 'users/user_popover', locals: {user: comment.user}}", "data-html" => "true", "data-popover" => "true"}
+            = link_to comment.user.email + " ", "#", class: 'stop-propagation'
           %span{id: "comment-score-#{comment.id}"}
             = comment.score
           %span= " votes : "
           %span{id: "comment-children-count-#{comment.id}"}
             = comment.children.count.to_s
           %span= " replies : " + time_ago_in_words(comment.created_at) + " ago"
-          %a.reply-collapse-trigger{"data-toggle" => "collapse", :href => "#reply-collapse-#{comment.id}", id: "reply-collapse-trigger-#{comment.id}"}
+          %a.stop-propagation{"data-toggle" => "collapse", :href => "#reply-collapse-#{comment.id}", id: "reply-collapse-trigger-#{comment.id}"}
             reply
       = raw comment.content
 

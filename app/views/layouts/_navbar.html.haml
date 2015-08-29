@@ -1,0 +1,30 @@
+%nav.navbar.navbar-inverse.navbar-fixed-top{'role'=>'navigation'}
+  .container
+    .navbar-header
+      %button.navbar-toggle.collapsed{"aria-controls" => "navbar", "aria-expanded" => "false", "data-target" => "#navbar", "data-toggle" => "collapse", :type => "button"}
+        %span.sr-only Toggle navigation
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      %a.navbar-brand{:href => "#"} Thumb Wars
+    #navbar.navbar-collapse.collapse
+      %ul.nav.navbar-nav
+        %li= link_to "Posts", posts_path, class: "active"
+      %ul.nav.navbar-nav.navbar-right
+        - if user_signed_in?
+          %li.dropdown
+            %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+              = current_user.email
+              %span.caret
+            %ul.dropdown-menu{:role => "menu"}
+              %li= link_to "Edit my info", edit_user_registration_path
+              %li= link_to "Sign out", destroy_user_session_path, method: :delete
+        - else
+          %li= link_to 'Sign up', '#', 'data-toggle' => 'modal', 'data-target' => '#signup_modal'
+          %li= link_to 'Sign in', '#', 'data-toggle' => "modal", 'data-target' => '#login_modal'
+      = form_tag posts_path, method: :get, :class => "navbar-form", input_html: {'role' => 'search'}, remote: current_page?(posts_path) do
+        .input-group
+          = text_field_tag :search, params[:search], class: 'form-control'
+          .input-group-btn
+            = button_tag type: 'submit', class: 'btn', name: nil do
+              %i.glyphicon.glyphicon-search

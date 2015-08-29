@@ -1,4 +1,1 @@
-- if params[:tag]
-  = params[:tag] + " Posts"
-- else
-  All Posts
+%h2 Posts about <b> #{params[:tag] || "Anything"}</b>

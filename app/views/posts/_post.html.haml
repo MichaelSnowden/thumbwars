@@ -3,7 +3,7 @@
   = link_to "×", post_path(post), method: :delete, remote: true, disable_with: "x", class: "close"
   %h4
     = link_to post.title, post
-    %small= post.updated_at
+    %small= time_ago_in_words(post.updated_at) + " ago"
 
-    = raw post.tag_list.map { |t| active_link_to t, tagged_posts_path(t), class: t +  "-tag-link tag-link", remote: true  }.join(', ')
   = raw post.content
+  %div= raw post.tag_list.map { |t| active_link_to t, tagged_posts_path(t), class: t +  "-tag-link tag-link", remote: true  }.join(', ')

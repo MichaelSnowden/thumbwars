@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     collection do
       get :tagged
       get :all
+      get :search
     end
   end
 

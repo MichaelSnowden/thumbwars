@@ -1,3 +1,4 @@
 <%= render partial: "index", locals: { posts: @posts } %>
 $(".tag-link").removeClass("perma-active")
-$(".All-tag-link").addClass("perma-active")
+$("#All-tag-link").addClass("perma-active")
+$("#posts-header").html("<%= escape_javascript(render 'posts_header') %>")

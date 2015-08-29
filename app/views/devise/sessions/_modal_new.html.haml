@@ -1,0 +1,19 @@
+.modal-dialog
+  = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+    .modal-content
+      .modal-header
+        %button.close{type: 'button', 'data-dismiss' => 'modal', 'aria-label' => 'Close'}
+          %span{'aria-hidden' => true}
+            &times;
+        %h4
+          Login
+      .modal-body
+        = f.input :email, required: false, autofocus: true
+        = f.input :password, required: false
+        = f.input :remember_me, as: :boolean if devise_mapping.rememberable?
+      .modal-footer
+        %button.btn.btn-default{type: 'button', 'data-dismiss'=>'modal'}
+          Cancel
+        = f.button :submit, "Login", class: 'btn-primary'
+        - if devise_mapping.lockable? && resource_class.unlock_strategy_enabled?(:email)
+          = link_to t('.didn_t_receive_unlock_instructions', :default => "Didn't receive unlock instructions?"), new_unlock_path(resource_name)

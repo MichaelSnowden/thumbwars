@@ -1,4 +1,8 @@
-<%= render "save" %>
-$("#new-post-collapse").collapse('hide')
-$(".tag-link").removeClass("perma-active")
-$(".<%= @tag %>-tag-link").addClass("perma-active")
+<% if @post.errors.any? %>
+	$("#post_form").html("<%= escape_javascript(render partial: 'form', locals: {post: @post}) %>")
+<% else %>
+	<%= render "save" %>
+	$("#new-post-collapse").collapse('hide')
+	$(".tag-link").removeClass("perma-active")
+	$(".<%= @tag %>-tag-link").addClass("perma-active")
+<% end %>

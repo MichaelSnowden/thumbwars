@@ -2,7 +2,8 @@
   %h1= @post.title
 .comments
   %h2 Comments
-  = render :partial => 'comments/form', :locals => { comment: @comment, parent_id: nil, post_id: @post.id }
+  - if current_user
+    = render :partial => 'comments/form', :locals => { comment: @comment, parent_id: nil, post_id: @post.id }
   %ul.media-list{ id: "comment-index" }
     - @comments.each do |c|
       %li.media
